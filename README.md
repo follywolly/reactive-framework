@@ -15,4 +15,4 @@
 ## To-do
 
 ## License
-[MIT]('LICENSE') © [Folkert-Jan van der Pol]('https://folkertjan.nl/')
+[MIT](LICENSE) © [Folkert-Jan van der Pol](https://folkertjan.nl/)
