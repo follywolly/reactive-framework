@@ -1,4 +1,7 @@
 /* styles */
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: sans-serif;
   padding-top: 8rem;
@@ -67,6 +70,12 @@ p.loading {
   width: auto;
   border-radius: 4px;
   width: 30%;
+  background-color: #F2F2F2;
+  height: 20rem;
+}
+.painting.detail {
+  width: 20rem;
+  margin: 0 auto;
 }
 .painting a {
   text-decoration: none;
