@@ -2,22 +2,29 @@
 * {
   box-sizing: border-box;
 }
+body, html {
+  padding: 0;
+  margin: 0;
+}
 body {
   font-family: sans-serif;
   padding-top: 8rem;
   text-transform: uppercase;
   overflow-x: hidden;
 }
+main {
+  overflow-x: hidden;
+}
 h1 {
   text-align: center;
   margin-bottom: 6rem;
 }
+p {
+  text-transform: none;
+}
 footer {
   text-align: center;
-  position: absolute;
-  bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
+  padding: 2rem 0;
 }
 #app {
   /* display: grid;
@@ -34,6 +41,7 @@ footer {
   white-space: nowrap;
   /* overflow: scroll; */
   position: relative;
+  min-height: 150vh;
 }
 #app > p {
   text-align: center;
@@ -43,39 +51,21 @@ p.loading {
 }
 .painting-group {
   width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateX(100vw);
-  bottom: 0;
-  display: flex;
+  display: block;
   justify-content: space-between;
-  opacity: 0;
-  pointer-events: none;
   transition: all 0.9s;
 }
-.painting-group.active {
-  opacity: 1;
-  pointer-events: all;
-  transform: translateX(0);
-}
-.painting-group.active-out {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(-100vw);
-}
+
+
+/* === PAINTING === */
 .painting {
   white-space: normal;
   box-shadow: 0px 3px 15px 3px rgba(0,0,0,.05);
   width: auto;
   border-radius: 4px;
-  width: 30%;
+  width: 100%;
   background-color: #F2F2F2;
   height: 20rem;
-}
-.painting.detail {
-  width: 20rem;
-  margin: 0 auto;
 }
 .painting a {
   text-decoration: none;
@@ -97,6 +87,7 @@ p.loading {
   min-height: 100%;
   object-fit: cover;
   transition: all 0.6s;
+  transform-origin: center;
 }
 .painting p, .painting h3 {
   display: block;
@@ -110,21 +101,64 @@ p.loading {
   left: 0;
   width: 100%;
   bottom: 0;
-  opacity: 0;
   background-color: rgba(0,0,0,0.5);
   transition: all 0.3s;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 1rem;
 }
 .painting a:hover img {
-  min-height: 120%;
+  transform: scale(1.1);
 }
-.painting a:hover figcaption {
-  opacity: 1;
+
+/* === PAINTING DETAIL === */
+.painting.detail {
+  width: auto;
+  max-width: 40rem;
+  margin: 0 auto;
+  height: auto;
+  background-color: white;
+  box-shadow: none;
 }
+.painting.detail h3, .painting.detail p {
+  color: black;
+}
+.painting.detail > p {
+  text-align: left;
+}
+.painting.detail .color-block {
+  width: 40px;
+  height: 40px;
+  color: transparent;
+  overflow: hidden;
+  display: inline-block;
+}
+.painting.detail img {
+  width: 100%;
+  height: auto;
+}
+.painting.detail figure {
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 3px 15px 3px rgba(0,0,0,.05);
+  margin-bottom: 4rem;
+}
+.painting.detail figcaption {
+  background-color: transparent;
+  color: transparent;
+}
+.painting.detail .color-blocks-holder {
+  display: flex;
+  justify-content: center;
+}
+
+/* === Else === */
+
+
 button {
+  display: block;
   appearance: none;
   background: black;
   border: 0;
@@ -133,12 +167,47 @@ button {
   border-radius: 4px;
   padding: 0.75rem 1.25rem;
   color: white;
-  position: absolute;
-  bottom: 9rem;
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 3rem auto;
+  display: none;
 }
 button:hover {
   background: #F2F2F2;
   color: black;
+}
+
+
+@media screen and (min-width: 60rem) {
+  #app {
+    min-height: 25rem;
+  }
+  .painting-group {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(100vw);
+    bottom: 0;
+  }
+  .painting-group.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(0);
+  }
+  .painting-group.active-out {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-100vw);
+  }
+  .painting {
+    width: 30%;
+  }
+  .painting figcaption {
+    opacity: 0;
+  }
+  .painting a:hover figcaption {
+    opacity: 1;
+  }
+  button{
+    display: block;
+  }
 }

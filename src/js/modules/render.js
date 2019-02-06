@@ -38,16 +38,27 @@ const render = {
     const painting = data.artObject
     this.clean()
     console.log(painting)
+
+    let colors = '<div class="color-blocks-holder">';
+    for(let i = 0; i < painting.colors.length; i++){
+      colors += `<div class="color-block" style="background-color: ${painting.colors[i]};">${painting.colors[i]}</div>`
+    }
+    colors += '</div>'
+
     this.app.innerHTML = `
-    <div class="painting detail">
-        <figure>
-          <img src="${painting.webImage.url}" alt="${painting.longTitle} - Rijksmuseum Collection">
-          <figcaption>
-            <h3>${painting.title}</h3>
-            <p>${painting.principalOrFirstMaker}</p>
-          </figcaption>
-        </figure>
-    </div>
+      <div class="painting detail">
+          <figure>
+            <img src="${painting.webImage.url}" alt="${painting.longTitle} - Rijksmuseum Collection">
+            <figcaption>
+              ${painting.longTitle} - Rijksmuseum Collection
+            </figcaption>
+          </figure>
+          <h3>${painting.title}</h3>
+          <p>${painting.label.makerLine}</p>
+          <p>${painting.label.description}</p>
+          <p>${painting.principalOrFirstMaker}</p>
+          ${colors}
+      </div>
     `
   }
 }
