@@ -9,5 +9,4 @@ const data = {
     return fetch(url)
   }
 }
-
 export default data
