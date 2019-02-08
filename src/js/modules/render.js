@@ -13,7 +13,7 @@ const render = {
         group += `<div class="painting-group">`
       }
       group += `<div class="painting">
-            <a href="#${painting.objectNumber}" target="_blank">
+            <a href="#${painting.objectNumber}">
               <figure>
                 <img src="${painting.headerImage.url}" alt="${painting.longTitle} - Rijksmuseum Collection">
                 <figcaption>

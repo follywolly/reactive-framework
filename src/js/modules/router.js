@@ -3,15 +3,11 @@ import data from './data.js'
 
 const router = {
   init() {
-    const links = document.querySelectorAll('a[href*="#"]')
-    links.forEach(link => {
-      const id = link.href.split('#')[1]
-      link.addEventListener('click', (e) => {
-        e.preventDefault()
-        data.get(id)
-          .then(raw => raw.json())
-          .then(painting => render.detail(painting))
-      })
+    window.addEventListener('hashchange', () => {
+      const id = window.location.href.split('#')[1]
+      data.get(id)
+        .then(raw => raw.json())
+        .then(painting => render.detail(painting))
     })
   }
 }

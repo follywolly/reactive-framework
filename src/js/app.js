@@ -6,7 +6,7 @@ import slider from './modules/slider.js'
 import data from './modules/data.js'
 import router from './modules/router.js'
 
-function init() {
+(function() {
   data.all()
     .then(raw => raw.json())
     .then(data => {
@@ -22,5 +22,4 @@ function init() {
       document.querySelector('#app').innerHTML = '<p class="error">You are offline</p>'
       console.log(err);
     })
-}
-document.addEventListener('DOMContentLoaded', () => init())
+})()
