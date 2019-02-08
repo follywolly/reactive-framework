@@ -1,11 +1,15 @@
 const data = {
-  key: '3jvQxuIu',
+  settings: '?key=3jvQxuIu&format=json',
+  endpoint: 'https://www.rijksmuseum.nl/api/nl/collection',
+  url(insert = '', extras = '') {
+    return this.endpoint + insert + this.settings + extras
+  },
   all() {
-    const url = `https://www.rijksmuseum.nl/api/nl/collection?key=${this.key}&format=json&ps=100`
+    const url = this.url('', '&ps=100')
     return fetch(url)
   },
   get(id) {
-    const url = `https://www.rijksmuseum.nl/api/nl/collection/${id}?key=${this.key}&format=json`
+    const url = this.url(`/${id}`)
     return fetch(url)
   }
 }
