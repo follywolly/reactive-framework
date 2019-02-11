@@ -1,8 +1,6 @@
 'use strict'
 
 // modules
-import render from './modules/render.js'
-import data from './modules/data.js'
 import router from './modules/router.js'
 
 router.routes = [
