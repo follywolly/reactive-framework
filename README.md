@@ -11,9 +11,10 @@ Content served on a front page with art objects from the [Rijksmuseum API](https
 2. [Install](#2-Install)
 3. [Features](#3-Features)
 4. [API](#4-API)
-5. [Interaction](#5-Interaction)
-6. [Design decisions](#6-Design-decisions)
-7. [To-do](#7-To-do)
+5. [Actor Diagram](#5-Actor-Diagram)
+6. [Interaction](#6-Interaction)
+7. [Design decisions](#7-Design-decisions)
+8. [To-do](#8-To-do)
 
 [License](#License)
 
@@ -58,23 +59,27 @@ fetch('https://www.rijksmuseum.nl/api/nl/collection/ART-OBJECT-NUMBER?key=YOUR-A
     // do something with the data
   })
 ```
+## 5. Actor Diagram
+The main flow of the code in this application is described in the diagram below.
+![Actor diagram image](docs/actor_diagram.png)
 
-## 5. Interaction
+## 6. Interaction
 Currently the interaction in the product is switching between different paintings on the home page. On desktop you see 3 paintings at a time.
 There's a button that lets you switch to the next 3 paintings. This loop is endless.
 You can click on every painting to open its detail page. You currently can't go back to the home page yet.
 
-## 6. Design decisions
+## 7. Design decisions
 Currently the design is very minimalistic, to really let the images of the art objects speak for itself.
 On desktop, the landing page shows three paintings at a time horizontally, to represent the feeling of an art gallery. When switching to the next three paintings a slide animation occurs, giving the feeling of moving to a next room. This was done to really represent the feeling of an art gallery, as the main focus of this product is showing off the art objects from the Rijksmuseum's current collection.
 
-## 7. To-do
+## 8. To-do
 - [x] Make connection with the API
 - [x] Render landing page with all art objects
 - [x] Render detail pages
 - [x] Divide codebase into modules
 - [x] Make basic router
-- [ ] Actor chart
+- [x] Actor diagram
+- [ ] Interaction diagram
 - [ ] Return to home button from detailpage
 - [ ] Adding url catch features to the router
 - [ ] Add multiple routes

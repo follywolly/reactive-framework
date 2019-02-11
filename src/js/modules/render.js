@@ -30,7 +30,7 @@ const render = {
       }
       return group
     })
-
+    elements.push('<button>Volgende drie...</button>')
     this.app.innerHTML = elements.toString().split(',').join('')
     document.querySelectorAll('.painting-group')[0].classList.add('active')
   },
