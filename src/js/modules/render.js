@@ -8,7 +8,12 @@ const render = {
   },
   error(text) {
     this.clean()
-    this.app.innerHTML = text
+    this.app.innerHTML = `
+      <div class="container">
+        <h2>404</h2>
+        <p>${text}</p>
+      </div>
+    `
   },
   async overview() {
     this.clean()
@@ -39,16 +44,15 @@ const render = {
       }
       return group
     })
-    elements.push('<button>Volgende drie...</button>')
-    this.app.innerHTML = elements.toString().split(',').join('')
+    elements.push('</div></div><button>Volgende drie...</button>')
+    this.app.innerHTML = '<div class="paintingsholder">' + elements.toString().split(',').join('')
     document.querySelectorAll('.painting-group')[0].classList.add('active')
     slider()
   },
   async detail(id) {
     this.clean()
 
-    const res = await data.get(id)
-    const painting = res.artObject
+    const painting = await data.get(id)
 
     let colors = '<div class="color-blocks-holder">';
     for(let i = 0; i < painting.colors.length; i++){
@@ -58,17 +62,18 @@ const render = {
 
     this.app.innerHTML = `
       <div class="painting detail">
-          <figure>
-            <img src="${painting.webImage.url}" alt="${painting.longTitle} - Rijksmuseum Collection">
-            <figcaption>
-              ${painting.longTitle} - Rijksmuseum Collection
-            </figcaption>
-          </figure>
-          <h3>${painting.title}</h3>
-          <p>${painting.label.makerLine}</p>
-          <p>${painting.label.description}</p>
-          <p>${painting.principalOrFirstMaker}</p>
-          ${colors}
+        <a href="#/" class="btn">Go back</a>
+        <figure>
+          <img src="${painting.webImage.url}" alt="${painting.longTitle} - Rijksmuseum Collection">
+          <figcaption>
+            ${painting.longTitle} - Rijksmuseum Collection
+          </figcaption>
+        </figure>
+        <h3>${painting.title}</h3>
+        <p>${painting.label.makerLine}</p>
+        <p>${painting.label.description}</p>
+        <p>${painting.principalOrFirstMaker}</p>
+        ${colors}
       </div>
     `
   }

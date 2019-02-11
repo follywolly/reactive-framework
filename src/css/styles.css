@@ -55,6 +55,9 @@ p.loading {
   justify-content: space-between;
   transition: all 0.9s;
 }
+.paintingsholder {
+  min-height: 23rem;
+}
 
 
 /* === PAINTING === */
@@ -157,8 +160,8 @@ p.loading {
 /* === Else === */
 
 
-button {
-  display: block;
+button, .btn {
+  display: table;
   appearance: none;
   background: black;
   border: 0;
@@ -169,8 +172,10 @@ button {
   color: white;
   margin: 3rem auto;
   display: none;
+  position: relative;
+  z-index: 1;
 }
-button:hover {
+button:hover, .btn:hover {
   background: #F2F2F2;
   color: black;
 }
@@ -208,7 +213,7 @@ button:hover {
   .painting a:hover figcaption {
     opacity: 1;
   }
-  button{
-    display: block;
+  button, .btn {
+    display: table;
   }
 }

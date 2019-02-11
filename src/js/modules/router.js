@@ -1,26 +1,31 @@
 import render from './render.js'
 
 const router = {
-  href() {
-    return window.location.href.split('#')[1]
+  routes: [],
+  hash() {
+    return window.location.hash
+  },
+  add(name, href) {
+    this.routes.push({name, href})
   },
   async init() {
-    if (window.location.href.indexOf('#') === -1) window.location.href += '#/'
-    this.navigate(this.href())
+    if (!window.location.hash) window.location.href = '#/'
+
+    this.navigate(this.hash())
+
     window.addEventListener('hashchange', () => {
-      this.navigate(this.href())
+      this.navigate(this.hash())
     })
   },
-  navigate(href) {
-    const hrefParts = href.split('/')
+  navigate(hash) {
+    const hashParts = hash.split('/')
     let route, id
 
-    if (hrefParts.length > 2) {
-      route = this.routes.find(route => route.href.indexOf(hrefParts[1]) > -1)
-      id = hrefParts[2]
+    if (hashParts.length > 2) {
+      route = this.routes.find(route => route.href.indexOf(hashParts[1]) > -1)
+      id = hashParts[2]
     } else {
-      route = this.routes.find(route => route.href === href)
-      id = ''
+      route = this.routes.find(route => route.href === hash.split('#')[1])
     }
 
     if (!route) return render.error('Unknown route')
