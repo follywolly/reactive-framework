@@ -6,11 +6,21 @@ const data = {
   },
   all() {
     const url = this.url('', '&ps=100')
-    return fetch(url)
+    return new Promise((resolve, reject) => {
+      fetch(url)
+        .then(raw => raw.json())
+        .then(data => resolve(data))
+        .catch(err => reject(err))
+    })
   },
   get(id) {
     const url = this.url(`/${id}`)
-    return fetch(url)
+    return new Promise((resolve, reject) => {
+      fetch(url)
+        .then(raw => raw.json())
+        .then(data => resolve(data))
+        .catch(err => reject(err))
+    })
   }
 }
 export default data

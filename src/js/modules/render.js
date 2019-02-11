@@ -1,10 +1,19 @@
+import data from './data.js'
+import slider from './slider.js'
+
 const render = {
   app: document.querySelector('#app'),
   clean() {
-    this.app.innerHTML = ''
+    this.app.innerHTML = '<p>Loading...</p>'
   },
-  home(data) {
-    const filtered = data.artObjects.filter(painting => painting.headerImage.url)
+  error(text) {
+    this.clean()
+    this.app.innerHTML = text
+  },
+  async overview() {
+    this.clean()
+    const res = await data.all()
+    const filtered = res.artObjects.filter(painting => painting.headerImage.url)
     let counter = 0;
     const elements = filtered.map((painting, index) => {
       counter++;
@@ -13,7 +22,7 @@ const render = {
         group += `<div class="painting-group">`
       }
       group += `<div class="painting">
-            <a href="#${painting.objectNumber}">
+            <a href="#/paintings/${painting.objectNumber}">
               <figure>
                 <img src="${painting.headerImage.url}" alt="${painting.longTitle} - Rijksmuseum Collection">
                 <figcaption>
@@ -33,11 +42,13 @@ const render = {
     elements.push('<button>Volgende drie...</button>')
     this.app.innerHTML = elements.toString().split(',').join('')
     document.querySelectorAll('.painting-group')[0].classList.add('active')
+    slider()
   },
-  detail(data) {
-    const painting = data.artObject
+  async detail(id) {
     this.clean()
-    console.log(painting)
+
+    const res = await data.get(id)
+    const painting = res.artObject
 
     let colors = '<div class="color-blocks-holder">';
     for(let i = 0; i < painting.colors.length; i++){

@@ -64,9 +64,8 @@ The main flow of the code in this application is described in the diagram below.
 ![Actor diagram image](docs/actor_diagram.png)
 
 ## 6. Interaction
-Currently the interaction in the product is switching between different paintings on the home page. On desktop you see 3 paintings at a time.
-There's a button that lets you switch to the next 3 paintings. This loop is endless.
-You can click on every painting to open its detail page. You currently can't go back to the home page yet.
+The main interaction flow of the code in this applications is described in the diagram below.
+![Interaction diagram image](docs/interaction_diagram.png)
 
 ## 7. Design decisions
 Currently the design is very minimalistic, to really let the images of the art objects speak for itself.
