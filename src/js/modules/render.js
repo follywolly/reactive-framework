@@ -1,11 +1,14 @@
-import data from './data.js'
+import Data from './data.js'
 import slider from './slider.js'
 
-const render = {
-  app: document.querySelector('#app'),
+class Render {
+  constructor(){
+    this.data = new Data()
+    this.app = document.querySelector('#app')
+  }
   clean() {
     this.app.innerHTML = '<p>Loading...</p>'
-  },
+  }
   error(text) {
     this.clean()
     this.app.innerHTML = `
@@ -14,11 +17,21 @@ const render = {
         <p>${text}</p>
       </div>
     `
-  },
+  }
+  title() {
+    return '<h1>Kunststukken uit het Rijksmuseum</h1>'
+  }
+  footer() {
+    return `
+      <footer>
+        made with the <a href="https://www.rijksmuseum.nl/en/api">Rijksmuseum API</a>
+      </footer>
+    `
+  }
   async overview() {
     this.clean()
-    const res = await data.all()
-    const filtered = res.artObjects.filter(painting => painting.headerImage.url)
+    const res = await this.data.getAll()
+    const filtered = res.filter(painting => painting.headerSrc)
     let counter = 0;
     const elements = filtered.map((painting, index) => {
       counter++;
@@ -27,12 +40,12 @@ const render = {
         group += `<div class="painting-group">`
       }
       group += `<div class="painting">
-            <a href="#/paintings/${painting.objectNumber}">
+            <a href="#/paintings/${painting.number}">
               <figure>
-                <img src="${painting.headerImage.url}" alt="${painting.longTitle} - Rijksmuseum Collection">
+                <img src="${painting.headerSrc}" alt="${painting.fullTitle} - Rijksmuseum Collection">
                 <figcaption>
                   <h3>${painting.title}</h3>
-                  <p>${painting.principalOrFirstMaker}</p>
+                  <p>${painting.maker}</p>
                 </figcaption>
               </figure>
             </a>
@@ -44,15 +57,16 @@ const render = {
       }
       return group
     })
-    elements.push('</div></div><button>Volgende drie...</button>')
-    this.app.innerHTML = '<div class="paintingsholder">' + elements.toString().split(',').join('')
+    elements.push('</div></div><button id="slider-button">Volgende drie...</button>')
+    const renderStr = '<main>' + this.title() + '<div class="paintingsholder">' + elements.toString().split(',').join('') + '</main>' + this.footer()
+    this.app.insertAdjacentHTML('afterbegin', renderStr)
     document.querySelectorAll('.painting-group')[0].classList.add('active')
     slider()
-  },
+  }
   async detail(id) {
     this.clean()
 
-    const painting = await data.get(id)
+    const painting = await this.data.get(id)
 
     let colors = '<div class="color-blocks-holder">';
     for(let i = 0; i < painting.colors.length; i++){
@@ -60,23 +74,28 @@ const render = {
     }
     colors += '</div>'
 
-    this.app.innerHTML = `
-      <div class="painting detail">
-        <a href="#/" class="btn">Go back</a>
-        <figure>
-          <img src="${painting.webImage.url}" alt="${painting.longTitle} - Rijksmuseum Collection">
-          <figcaption>
-            ${painting.longTitle} - Rijksmuseum Collection
-          </figcaption>
-        </figure>
-        <h3>${painting.title}</h3>
-        <p>${painting.label.makerLine}</p>
-        <p>${painting.label.description}</p>
-        <p>${painting.principalOrFirstMaker}</p>
-        ${colors}
-      </div>
+    const renderStr = `
+      <main>
+      ${this.title()}
+        <div class="painting detail">
+          <a href="#/" class="btn">Go back</a>
+          <figure>
+            <img src="${painting.src}" alt="${painting.longTitle} - Rijksmuseum Collection">
+            <figcaption>
+              ${painting.longTitle} - Rijksmuseum Collection
+            </figcaption>
+          </figure>
+          <h3>${painting.title}</h3>
+          <p>${painting.makerLine}</p>
+          <p>${painting.description}</p>
+          <p>${painting.maker}</p>
+          ${colors}
+        </div>
+      </main>
+      ${this.footer()}
     `
+    this.app.insertAdjacentHTML('afterbegin', renderStr)
   }
 }
 
-export default render
+export default Render

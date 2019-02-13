@@ -1,50 +1,58 @@
-const data = {
-  settings: '?key=3jvQxuIu&format=json',
-  endpoint: 'https://www.rijksmuseum.nl/api/nl/collection',
+class Data {
+  constructor() {
+    this.settings = '?key=3jvQxuIu&format=json'
+    this.endpoint = 'https://www.rijksmuseum.nl/api/nl/collection'
+  }
   url(insert = '', extras = '') {
     return this.endpoint + insert + this.settings + extras
-  },
-  all() {
-    if (localStorage.getItem('data')) {
-      return new Promise(resolve => resolve(JSON.parse(localStorage.getItem('data'))))
+  }
+  template(painting) {
+    return {
+      number: painting.objectNumber,
+      src: painting.webImage.url,
+      fullTitle: painting.fullTitle,
+      title: painting.title,
+      maker: painting.principalOrFirstMaker,
+      colors: painting.colors,
+      description: painting.label.description,
+      makerLine: painting.label.makerLine
     }
-    const url = this.url('', '&ps=100')
+  }
+  format(data) {
+    // console.log(this.template(data.artObject))
+    if (data.artObject) {
+      // single object
+      const painting = data.artObject
+      return this.template(painting)
+    }
+    return data.artObjects.map(painting => ({
+      number: painting.objectNumber,
+      headerSrc: painting.headerImage.url,
+      fullTitle: painting.fullTitle,
+      title: painting.title,
+      maker: painting.principalOrFirstMaker
+    }))
+  }
+  request(name, url) {
+    if (sessionStorage.getItem(name)) {
+      return new Promise(resolve => resolve(JSON.parse(sessionStorage.getItem(name))))
+    }
     return new Promise((resolve, reject) => {
       fetch(url)
         .then(raw => raw.json())
+        .then(json => this.format(json))
         .then(data => {
-          localStorage.setItem('data', JSON.stringify(data))
+          sessionStorage.setItem(name, JSON.stringify(data))
           return resolve(data)
         })
         .catch(err => reject(err))
     })
-  },
+  }
+  getAll() {
+    return this.request('data', this.url('', '&ps=20'))
+  }
   get(id) {
-    if (localStorage.getItem(id)) {
-      return new Promise(resolve => resolve(JSON.parse(localStorage.getItem(id))))
-    }
-    const url = this.url(`/${id}`)
-    return new Promise((resolve, reject) => {
-      fetch(url)
-        .then(raw => raw.json())
-        .then(dirty => {
-          const painting = dirty.artObject
-          console.log(painting)
-          return {
-            webImage: painting.webImage,
-            longTitle: painting.longTitle,
-            title: painting.title,
-            label: painting.label,
-            principalOrFirstMaker: painting.principalOrFirstMaker,
-            colors: painting.colors
-          }
-        })
-        .then(painting => {
-          localStorage.setItem(id, JSON.stringify(painting))
-          return resolve(painting)
-        })
-        .catch(err => reject(err))
-    })
+    return this.request(id, this.url(`/${id}`))
   }
 }
-export default data
+export default Data
