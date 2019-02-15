@@ -26,7 +26,6 @@ class Overview extends Template {
             )
           )
         })
-
       ),
       this.domHandler.virtualize('button', {'id': 'slider-button'}, 'Volgende drie...')
     )

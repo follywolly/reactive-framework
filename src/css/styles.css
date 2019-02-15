@@ -8,7 +8,6 @@ body, html {
 }
 body {
   font-family: sans-serif;
-  padding-top: 8rem;
   text-transform: uppercase;
   overflow-x: hidden;
 }
@@ -27,7 +26,7 @@ footer {
   text-align: center;
   padding: 2rem 0;
 }
-#app, .holder {
+#app {
   /* display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 1rem;
@@ -42,9 +41,10 @@ footer {
   white-space: nowrap;
   /* overflow: scroll; */
   position: relative;
-  min-height: 150vh;
+  padding: 4rem 0;
+
 }
-#app > p, .holder > p {
+#app > p {
   text-align: center;
 }
 p.loading {

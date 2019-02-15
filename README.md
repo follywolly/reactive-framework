@@ -33,6 +33,7 @@ git clone https://github.com/your-user-name/web-app-from-scratch-18-19/src
 - Landing page with art objects loaded in from the [Rijksmuseum API](https://www.rijksmuseum.nl/nl/api).
 - Detailpages for each art object
 - Very, very, very basic router
+- Start of a virtual DOM
 
 ## 4. API
 The data that populates this product is served by the [Rijksmuseum API](https://www.rijksmuseum.nl/nl/api).
@@ -61,11 +62,24 @@ fetch('https://www.rijksmuseum.nl/api/nl/collection/ART-OBJECT-NUMBER?key=YOUR-A
 ```
 ## 5. Actor Diagram
 The main flow of the code in this application is described in the diagram below.
-![Actor diagram image](docs/actor_diagram.png)
+<details>
+  <summary>Week 1</summary>
+  ![Actor diagram image](docs/actor_diagram.png)
+</details>   
+Week 2
+![Actor diagram image](docs/actor_diagram_week2.png)
 
 ## 6. Interaction
 The main interaction flow of the code in this applications is described in the diagram below.
-![Interaction diagram image](docs/interaction_diagram.png)
+
+<details>
+  <summary>Week 1</summary>
+  ![Interaction diagram image](docs/interaction_diagram.png)
+</details>   
+Week 2:
+![Interaction diagram image](docs/interaction_diagram_week2.png)
+
+Clearly, there's some work to be done to make data and render functions more dynamic.
 
 ## 7. Design decisions
 Currently the design is very minimalistic, to really let the images of the art objects speak for itself.
@@ -78,12 +92,13 @@ On desktop, the landing page shows three paintings at a time horizontally, to re
 - [x] Divide codebase into modules
 - [x] Make basic router
 - [x] Actor diagram
-- [ ] Interaction diagram
-- [ ] Return to home button from detailpage
-- [ ] Adding url catch features to the router
-- [ ] Add multiple routes
+- [x] Interaction diagram
+- [x] Return to home button from detailpage
+- [x] Adding url catch features to the router
+- [x] Add multiple routes
 - [ ] Make detail pages listen to the artworks colors (colors provided by the API)
 - [ ] Adding a template engine (or making one)
+- [ ] Virtual dom
 - [ ] Support English & Dutch language
 
 ## License

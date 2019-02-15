@@ -2,7 +2,6 @@ class DOM {
   constructor() {
   }
   virtualize(type, props, ...children) {
-
     return {type, props, children}
   }
   create(node) {
