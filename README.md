@@ -67,7 +67,7 @@ The main flow of the code in this application is described in the diagram below.
 
 ![Actor diagram image](docs/actor_diagram.png)
 </details>
-  
+
 Week 2
 
 ![Actor diagram image](docs/actor_diagram_week2.png)
@@ -88,8 +88,6 @@ The main interaction flow of the code in this applications is described in the d
 Week 2 - Current
 
 ![Interaction diagram image](docs/interaction_diagram_week2_2.png)
-
-Clearly, there's some work to be done to make data and render functions more dynamic.
 
 ## 7. Design decisions
 Currently the design is very minimalistic, to really let the images of the art objects speak for itself.
