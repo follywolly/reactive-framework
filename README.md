@@ -63,28 +63,31 @@ fetch('https://www.rijksmuseum.nl/api/nl/collection/ART-OBJECT-NUMBER?key=YOUR-A
 ## 5. Actor Diagram
 The main flow of the code in this application is described in the diagram below.
 <details>
-  <summary>Week 1</summary>
-  ![Actor diagram image](docs/actor_diagram.png)
-</details>   
+<summary>Week 1</summary>
+
+![Actor diagram image](docs/actor_diagram.png)
+</details>
+  
 Week 2
+
 ![Actor diagram image](docs/actor_diagram_week2.png)
 
 ## 6. Interaction
 The main interaction flow of the code in this applications is described in the diagram below.
 
 <details>
-  <summary>Week 1</summary>
-  
-  ![Interaction diagram image](docs/interaction_diagram.png)
+<summary>Week 1</summary>
+
+![Interaction diagram image](docs/interaction_diagram.png)
 </details>   
-<details>
-  <summary>Week 2 first version</summary>
+<summary>Week 2 - first version</summary>
 
-  ![Interaction diagram image](docs/interaction_diagram_week2.png)
-
-</details>  
-Week 2
 ![Interaction diagram image](docs/interaction_diagram_week2.png)
+</details>   
+
+Week 2 - Current
+
+![Interaction diagram image](docs/interaction_diagram_week2_2.png)
 
 Clearly, there's some work to be done to make data and render functions more dynamic.
 
