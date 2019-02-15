@@ -1,8 +1,5 @@
 import Data from './data.js'
 import DOM from './dom.js'
-import Overview from '../templates/overview.js'
-import Detail from '../templates/detail.js'
-import slider from './slider.js'
 
 class Render {
   constructor(){
@@ -13,37 +10,15 @@ class Render {
   clean() {
     this.app.innerHTML = ''
   }
-  error(text) {
+  async template(config) {
     this.clean()
-    this.app.innerHTML = `
-      <div class="container">
-        <h2>404</h2>
-        <p>${text}</p>
-      </div>
-    `
-  }
-  async overview() {
-    this.clean()
-    const data = await this.data.getAll()
-    const overview = new Overview(data)
+    const data = await this.data.request(config.name, config.urlConfig)
     this.app.appendChild(
       this.dom.create(
-        overview.template()
+        config.temp.build(data)
       )
     )
-    slider()
-
-  }
-  async detail(id) {
-    console.log('fired');
-    this.clean()
-    const data = await this.data.get(id)
-    const detail = new Detail(data)
-    this.app.appendChild(
-      this.dom.create(
-        detail.template()
-      )
-    )
+    config.callbacks.forEach(cb => cb())
   }
 }
 

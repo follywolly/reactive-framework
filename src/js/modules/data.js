@@ -3,8 +3,10 @@ class Data {
     this.settings = '?key=3jvQxuIu&format=json'
     this.endpoint = 'https://www.rijksmuseum.nl/api/nl/collection'
   }
-  url(insert = '', extras = '') {
-    return this.endpoint + insert + this.settings + extras
+  url(params = {}) {
+    params.insert = params.insert || ''
+    params.adjacent = params.adjacent || ''
+    return this.endpoint + params.insert + this.settings + params.adjacent
   }
   template(painting) {
     return {
@@ -33,7 +35,8 @@ class Data {
       maker: painting.principalOrFirstMaker
     }))
   }
-  request(name, url) {
+  request(name, urlConfig) {
+    const url = this.url(urlConfig)
     if (sessionStorage.getItem(name)) {
       return new Promise(resolve => resolve(JSON.parse(sessionStorage.getItem(name))))
     }
@@ -47,12 +50,6 @@ class Data {
         })
         .catch(err => reject(err))
     })
-  }
-  getAll() {
-    return this.request('data', this.url('', '&ps=20'))
-  }
-  get(id) {
-    return this.request(id, this.url(`/${id}`))
   }
 }
 export default Data

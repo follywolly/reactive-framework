@@ -3,9 +3,9 @@ import Template from './template.js'
 class Overview extends Template {
   constructor(data) {
     super()
-    this.slices = this.helper.chunk(data, 3)
   }
-  template() {
+  build(data) {
+    this.slices = this.helper.chunk(data, 3)
     return this.domHandler.virtualize('div', {'class': 'holder'},
       this.domHandler.virtualize('h1', {}, 'Kunststukken uit het rijksmuseum'),
       this.domHandler.virtualize('div', {'class': 'paintingsholder'},

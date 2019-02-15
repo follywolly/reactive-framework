@@ -74,9 +74,16 @@ The main interaction flow of the code in this applications is described in the d
 
 <details>
   <summary>Week 1</summary>
+  
   ![Interaction diagram image](docs/interaction_diagram.png)
 </details>   
-Week 2:
+<details>
+  <summary>Week 2 first version</summary>
+
+  ![Interaction diagram image](docs/interaction_diagram_week2.png)
+
+</details>  
+Week 2
 ![Interaction diagram image](docs/interaction_diagram_week2.png)
 
 Clearly, there's some work to be done to make data and render functions more dynamic.
