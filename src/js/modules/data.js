@@ -46,7 +46,7 @@ class Data {
         .then(json => this.format(json))
         .then(data => {
           sessionStorage.setItem(name, JSON.stringify(data))
-          return resolve(data)
+          resolve(data)
         })
         .catch(err => reject(err))
     })

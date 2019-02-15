@@ -5,20 +5,22 @@ class Overview extends Template {
     super()
   }
   build(data) {
+    const v = this.domHandler.virtualize
+
     this.slices = this.helper.chunk(data, 3)
-    return this.domHandler.virtualize('div', {'class': 'holder'},
-      this.domHandler.virtualize('h1', {}, 'Kunststukken uit het rijksmuseum'),
-      this.domHandler.virtualize('div', {'class': 'paintingsholder'},
+    return v('div', {'class': 'holder'},
+      v('h1', {}, 'Kunststukken uit het rijksmuseum'),
+      v('div', {'class': 'paintingsholder'},
         ...this.slices.map((slice, i) => {
-          return this.domHandler.virtualize('div', {'class': i == 0 ? 'painting-group active' : 'painting-group'},
+          return v('div', {'class': i == 0 ? 'painting-group active' : 'painting-group'},
           ...slice.map(painting =>
-              this.domHandler.virtualize('div', {'class': 'painting'},
-                this.domHandler.virtualize('a', {'href': `#/paintings/${painting.number}`},
-                  this.domHandler.virtualize('figure', {},
-                    this.domHandler.virtualize('img', {'src': painting.headerSrc}, ''),
-                    this.domHandler.virtualize('figcaption', {},
-                      this.domHandler.virtualize('h3', {}, painting.title),
-                      this.domHandler.virtualize('p', {}, painting.maker)
+              v('div', {'class': 'painting'},
+                v('a', {'href': `#/paintings/${painting.number}`},
+                  v('figure', {},
+                    v('img', {'src': painting.headerSrc}, ''),
+                    v('figcaption', {},
+                      v('h3', {}, painting.title),
+                      v('p', {}, painting.maker)
                     )
                   )
                 )
@@ -27,7 +29,7 @@ class Overview extends Template {
           )
         })
       ),
-      this.domHandler.virtualize('button', {'id': 'slider-button'}, 'Volgende drie...')
+      v('button', {'id': 'slider-button'}, 'Volgende drie...')
     )
   }
 }

@@ -14,27 +14,24 @@ class Router {
   hash() {
     return window.location.hash
   }
-  add(route) {
-    this.routes.push(route)
+  add(route, cb) {
+    this.routes.push({href: route, cb})
   }
   navigate(hash = this.hash()) {
-    const hashParts = hash.split('/')
-    let route, id
+    const params = hash.split('/')
+    let route, param
 
-
-    if (hashParts.length > 2) {
-      route = this.routes.find(route => route.href.indexOf(hashParts[1]) > -1)
-      name = hashParts[2]
-      route.urlConfig = {'insert': `/${name}`}
+    if (params.length > 2 && params[2] !== '') {
+      route = this.routes.find(route => route.href.indexOf(params[1]) > -1)
+      param = params[2]
     } else {
       route = this.routes.find(route => route.href === hash.split('#')[1])
-      name = route.name.toLowerCase()
+      param = null
     }
 
-    if (!route) return this.render.error('Unknown route')
-
-    if (!route.callbacks) route.callbacks = []
-    this.render.template({...route, name})
+    if (!route) return this.render.error('404', 'Page not found')
+    if (param !== null && param.indexOf('-') === -1) return this.render.error('401', 'Check if painting ID is valid. All ID\'s consist of letters, numbers and hyphens.')
+    return route.cb(param)
   }
 }
 
