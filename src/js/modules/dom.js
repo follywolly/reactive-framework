@@ -8,7 +8,6 @@ class DOM {
     if (typeof node === 'string') {
       return document.createTextNode(node)
     }
-    console.log(node)
     const el = document.createElement(node.type)
     this.setProps(el, node.props)
 
