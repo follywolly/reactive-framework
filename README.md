@@ -63,8 +63,9 @@ fetch('https://www.rijksmuseum.nl/api/nl/collection/ART-OBJECT-NUMBER?key=YOUR-A
 ## 5. Actor Diagram
 The main flow of the code in this application is described in the diagram below.
 <details>
-  <summary>Week 1</summary>
-  ![Actor diagram image](docs/actor_diagram.png)
+<summary>Week 1</summary>
+
+![Actor diagram image](docs/actor_diagram.png)
 </details>   
 Week 2
 
@@ -74,8 +75,9 @@ Week 2
 The main interaction flow of the code in this applications is described in the diagram below.
 
 <details>
-  <summary>Week 1</summary>
-  ![Interaction diagram image](docs/interaction_diagram.png)
+<summary>Week 1</summary>
+  
+![Interaction diagram image](docs/interaction_diagram.png)
 </details>   
 Week 2
 
