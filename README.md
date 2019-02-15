@@ -67,6 +67,7 @@ The main flow of the code in this application is described in the diagram below.
   ![Actor diagram image](docs/actor_diagram.png)
 </details>   
 Week 2
+
 ![Actor diagram image](docs/actor_diagram_week2.png)
 
 ## 6. Interaction
@@ -76,7 +77,8 @@ The main interaction flow of the code in this applications is described in the d
   <summary>Week 1</summary>
   ![Interaction diagram image](docs/interaction_diagram.png)
 </details>   
-Week 2:
+Week 2
+
 ![Interaction diagram image](docs/interaction_diagram_week2.png)
 
 Clearly, there's some work to be done to make data and render functions more dynamic.
