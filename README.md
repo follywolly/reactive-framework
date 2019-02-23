@@ -68,9 +68,11 @@ The main flow of the code in this application is described in the diagram below.
 ![Actor diagram image](docs/actor_diagram.png)
 </details>
 
-Week 2
+<details open>
+<summary>Week 2</summary>
 
 ![Actor diagram image](docs/actor_diagram_week2.png)
+</details>
 
 ## 6. Interaction
 The main interaction flow of the code in this applications is described in the diagram below.
@@ -79,15 +81,19 @@ The main interaction flow of the code in this applications is described in the d
 <summary>Week 1</summary>
 
 ![Interaction diagram image](docs/interaction_diagram.png)
-</details>   
-<summary>Week 2 - first version</summary>
+</details>
+
+<details>
+<summary>Week 2 - First Version</summary>
 
 ![Interaction diagram image](docs/interaction_diagram_week2.png)
 </details>   
 
-Week 2 - Current
+<details open>
+<summary>Week 2 - Current</summary>
 
 ![Interaction diagram image](docs/interaction_diagram_week2_2.png)
+</details>   
 
 ## 7. Design decisions
 Currently the design is very minimalistic, to really let the images of the art objects speak for itself.
