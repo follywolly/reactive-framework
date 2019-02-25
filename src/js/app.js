@@ -3,9 +3,9 @@
 // modules
 import Router from './modules/router.js'
 import Render from './modules/render.js'
-import Detail from './templates/detail.js'
-import Overview from './templates/overview.js'
-import slider from './modules/slider.js'
+import Detail from './templates/pages/detail.js'
+import Overview from './templates/pages/overview.js'
+import slider from './modules/callbacks/slider.js'
 
 
 (() => {
@@ -15,8 +15,8 @@ import slider from './modules/slider.js'
     render.template({
       name: 'Overview',
       temp: new Overview(),
-      urlConfig: {'adjacent': '&ps=20'},
-      callbacks: [slider]
+      urlConfig: {'adjacent': '&ps=10'},
+      callback: slider
     })
   })
 
@@ -24,8 +24,7 @@ import slider from './modules/slider.js'
     render.template({
       name: id,
       temp: new Detail(),
-      urlConfig: {'insert': `/${id}`},
-      callbacks: []
+      urlConfig: {'insert': `/${id}`}
     })
   })
   // router.add('Error', '/error')

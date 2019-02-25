@@ -1,6 +1,6 @@
 import Data from './data.js'
 import DOM from './dom.js'
-import ErrorTemp from '../templates/error.js'
+import ErrorTemp from '../templates/pages/error.js'
 
 class Render {
   constructor(){
@@ -30,7 +30,15 @@ class Render {
           config.temp.build(data)
         )
       )
-      config.callbacks.forEach(cb => cb())
+      if (config.callback){
+        if (config.callback.length) {
+          // array of functions passed in
+          config.callback.forEach(cb => cb())
+        } else {
+          // function
+          config.callback()
+        }
+      }
     } catch (e) {
       console.log(e)
       this.error('404', 'Page not found')

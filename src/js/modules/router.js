@@ -22,6 +22,7 @@ class Router {
     let route, param
 
     if (params.length > 2 && params[2] !== '') {
+      // kind of crude check for detail page url
       route = this.routes.find(route => route.href.indexOf(params[1]) > -1)
       param = params[2]
     } else {
@@ -29,8 +30,12 @@ class Router {
       param = null
     }
 
-    if (!route) return this.render.error('404', 'Page not found')
-    if (param !== null && param.indexOf('-') === -1) return this.render.error('401', 'Check if painting ID is valid. All ID\'s consist of letters, numbers and hyphens.')
+    if (!route) {
+      return this.render.error('404', 'Page not found')
+    }
+    if (param !== null && param.indexOf('-') === -1) {
+      return this.render.error('401', 'Check if painting ID is valid. All ID\'s consist of letters, numbers and hyphens.')
+    }
     return route.cb(param)
   }
 }

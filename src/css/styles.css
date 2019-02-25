@@ -66,7 +66,21 @@ p.loading {
   min-height: 23rem;
   position: relative;
 }
-
+/* === SEARCH === */
+.search-holder {
+  width: 90%;
+  max-width: 40rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 0 3rem;
+  align-items: center;
+}
+.search-holder input[type="text"] {
+  flex-grow: 1;
+  padding: 0.25rem 0.5rem;
+  margin: 0 0.5rem;
+}
 
 /* === PAINTING === */
 .painting {

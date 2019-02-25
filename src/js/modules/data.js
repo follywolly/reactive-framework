@@ -8,7 +8,7 @@ class Data {
     params.adjacent = params.adjacent || ''
     return this.endpoint + params.insert + this.settings + params.adjacent
   }
-  template(painting) {
+  detailTemp(painting) {
     return {
       number: painting.objectNumber,
       src: painting.webImage.url,
@@ -20,20 +20,23 @@ class Data {
       makerLine: painting.label.makerLine
     }
   }
-  format(data) {
-    // console.log(this.template(data.artObject))
-    if (data.artObject) {
-      // single object
-      const painting = data.artObject
-      return this.template(painting)
-    }
-    return data.artObjects.map(painting => ({
+  overviewTemp(painting) {
+    return {
       number: painting.objectNumber,
       headerSrc: painting.headerImage.url,
       fullTitle: painting.fullTitle,
       title: painting.title,
       maker: painting.principalOrFirstMaker
-    }))
+    }
+  }
+  format(data) {
+    // console.log(this.template(data.artObject))
+    if (data.artObject) {
+      // single object
+      const painting = data.artObject
+      return this.detailTemp(painting)
+    }
+    return data.artObjects.map(painting => this.overviewTemp(painting))
   }
   request(name, urlConfig) {
     const url = this.url(urlConfig)

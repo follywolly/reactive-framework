@@ -1,4 +1,4 @@
-import Template from './template.js'
+import Template from '../template.js'
 
 class Detail extends Template {
   constructor() {
