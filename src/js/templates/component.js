@@ -7,7 +7,9 @@ class Component extends Template {
     this.state = {}
   }
   setState(state) {
+    this.oldState = this.state
     this.state = Object.assign({}, this.state, state)
+    // this.domHandler.update(parent, this.slider.setState({data: filtered}), this.slider.setState({data: previous}))
     return this.build()
   }
   mounted() {

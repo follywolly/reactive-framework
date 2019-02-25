@@ -44,13 +44,13 @@ class DOM {
      node1.type !== node2.type
   }
   update(parent, newNode, oldNode, index = 0) {
-    console.log(newNode, oldNode, index)
     if (!oldNode) {
       parent.appendChild(
         this.create(newNode)
       )
     } else if (!newNode) {
-      console.log(parent.childNodes, oldNode, index);
+      // console.log(parent.childNodes, oldNode, index);
+      console.log(parent.childNodes, oldNode, index)
       parent.removeChild(
         parent.childNodes[index]
       )
@@ -62,7 +62,12 @@ class DOM {
     } else if (newNode.type) {
       const newLength = newNode.children.length
       const oldLength = oldNode.children.length
-      for (let i = 0; i < newLength || i < oldLength; i++) {
+      // if (oldLength > newLength) {
+      //   const crop = oldLength - newLength
+      //   const children = [...oldNode.children].slice(-1, crop)
+      //   children.forEach(child => oldNode.removeChild(child))
+      // }
+      for (let i = 0; i < oldLength || i < newLength; i++) {
         this.update(
           parent.childNodes[index],
           newNode.children[i],
