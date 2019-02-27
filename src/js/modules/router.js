@@ -14,8 +14,12 @@ class Router {
   hash() {
     return window.location.hash
   }
-  add(route, cb) {
-    this.routes.push({href: route, cb})
+  add(route) {
+    if (route.length) {
+      route.forEach(route => this.routes.push(route))
+    } else {
+      this.routes.push(route)
+    }
   }
   navigate(hash = this.hash()) {
     const params = hash.split('/')
@@ -36,7 +40,10 @@ class Router {
     if (param !== null && param.indexOf('-') === -1) {
       return this.render.error('401', 'Check if painting ID is valid. All ID\'s consist of letters, numbers and hyphens.')
     }
-    return route.cb(param)
+    return this.render.template({
+      temp: route.temp(param),
+      callback: route.callback
+    })
   }
 }
 

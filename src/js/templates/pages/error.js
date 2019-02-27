@@ -1,6 +1,6 @@
-import Template from '../template.js'
+import Component from '../component.js'
 
-class ErrorTemp extends Template {
+class ErrorTemp extends Component {
   constructor() {
     super()
   }

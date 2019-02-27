@@ -1,10 +1,8 @@
-import Data from './data.js'
 import DOM from './dom.js'
 import ErrorTemp from '../templates/pages/error.js'
 
 class Render {
   constructor(){
-    this.data = new Data()
     this.dom = new DOM()
     this.app = document.querySelector('#app')
     this.errorTemp = new ErrorTemp()
@@ -22,28 +20,21 @@ class Render {
   }
   async template(config) {
     this.clean()
-    let data
-    try {
-      data = await this.data.request(config.name, config.urlConfig)
-      this.app.appendChild(
-        this.dom.create(
-          config.temp.build(data)
-        )
+    this.app.appendChild(
+      this.dom.create(
+        config.temp.preBuild()
       )
-      if (config.callback){
-        if (config.callback.length) {
-          // array of functions passed in
-          config.callback.forEach(cb => cb())
-        } else {
-          // function
-          config.callback()
-        }
+    )
+    config.temp.mounted()
+    if (config.callback){
+      if (config.callback.length) {
+        // array of functions passed in
+        config.callback.forEach(cb => cb())
+      } else {
+        // function
+        config.callback()
       }
-    } catch (e) {
-      console.log(e)
-      this.error('404', 'Page not found')
     }
-
   }
 }
 

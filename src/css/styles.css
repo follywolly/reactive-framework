@@ -6,6 +6,9 @@ body, html {
   padding: 0;
   margin: 0;
 }
+:root {
+  --color-grey: #F2F2F2;
+}
 body {
   font-family: sans-serif;
   text-transform: uppercase;
@@ -32,6 +35,9 @@ footer {
 .error p {
   text-align: center;
 }
+.loading p {
+  text-align: center;
+}
 #app {
   /* display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
@@ -42,6 +48,7 @@ footer {
   column-gap: 1rem; */
   max-width: 1080px;
   width: 100%;
+  overflow-x: hidden;
   margin: 0 auto;
   /* display: flex; */
   white-space: nowrap;
@@ -85,11 +92,11 @@ p.loading {
 /* === PAINTING === */
 .painting {
   white-space: normal;
-  box-shadow: 0px 3px 15px 3px rgba(0,0,0,.05);
+  box-shadow: 0px 20px 40px -20px rgba(0,0,0,.25);
   width: auto;
   border-radius: 4px;
   width: 100%;
-  background-color: #F2F2F2;
+  background-color: var(--color-grey);
   height: 20rem;
 }
 .painting a {
@@ -162,13 +169,15 @@ p.loading {
 }
 .painting.detail img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 .painting.detail figure {
   width: 100%;
-  height: auto;
+  height: 30rem;
   box-shadow: 0px 30px 40px -20px rgba(0,0,0,.15);
   margin-bottom: 4rem;
+  background-color: var(--color-grey);
 }
 .painting.detail figcaption {
   background-color: transparent;
@@ -177,6 +186,63 @@ p.loading {
 .painting.detail .color-blocks-holder {
   display: flex;
   justify-content: center;
+}
+
+/* === Loaders === */
+.loader .img, .loader .text {
+  height: 20rem;
+  box-shadow: 0px 30px 40px -20px rgba(0,0,0,.15);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-grey);
+  content: "";
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.loader .text {
+  height: 2rem;
+  margin-bottom: 0;
+}
+.loader .img::after, .loader .text::after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 4rem;
+  background-color: rgba(0,0,0,0.05);
+  left: -4rem;
+  top: 0;
+  bottom: 0;
+  animation: loader 1.25s infinite linear;
+}
+.loader.detail .img::after, .loader.detail .text::after {
+  animation: loaderDetail 1.25s infinite linear;
+  width: 8rem;
+  left: -8rem;
+}
+.loader.detail .img {
+  height: 30rem;
+  width: 100%;
+  margin-bottom: 4rem;
+}
+@keyframes loader {
+  0% {
+    transform: translateX(0)
+  }
+  100% {
+    transform: translateX(24rem)
+  }
+}
+@keyframes loaderDetail {
+  0% {
+    transform: translateX(0)
+  }
+  100% {
+    transform: translateX(48rem)
+  }
 }
 
 /* === Else === */

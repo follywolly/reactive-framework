@@ -19,22 +19,17 @@ class Search extends Component {
   }
   search(){
     const input = document.querySelector('#search-input')
-    const parent = document.querySelector('#slider-holder')
-    const data = JSON.parse(sessionStorage.getItem('Overview'))
-    let previous = data
+    const parent = document.querySelector('#test')
+
+    // let previous = data
     input.addEventListener('input', () => {
+      const data = this.store.getState('paintings')
+      if (!data) return
       const filtered = data.filter(painting =>
         painting.title.toLowerCase().indexOf(input.value.toLowerCase()) > -1 ||
         painting.maker.toLowerCase().indexOf(input.value.toLowerCase()) > -1
       )
-      // this.domHandler.update(parent, this.slider.setState({data: filtered}), this.slider.setState({data: previous}))
-      // previous = filtered
-      parent.innerHTML = ''
-      parent.appendChild(
-        this.domHandler.create(
-          this.slider.setState({data: filtered})
-        )
-      )
+      this.slider.setState({data: filtered})
     })
   }
 }
