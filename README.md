@@ -14,8 +14,8 @@ Content served on a front page with art objects from the [Rijksmuseum API](https
 5. [Actor Diagram](#5-Actor-Diagram)
 6. [Interaction](#6-Interaction)
 7. [Code examples](#7-Code-examples)
-  - 7.1 [Router](#7-1-Router)
-  - 7.2 [Components](#7-2-Components)
+    1. [Router](#71-Router)
+    2. [Components](#72-Components)
 8. [Design decisions](#8-Design-decisions)
 9. [To-do](#9-To-do)
 
