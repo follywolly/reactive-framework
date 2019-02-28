@@ -8,7 +8,6 @@ class Detail extends Component {
   build() {
     const v = this.domHandler.virtualize
     return v('div', {'class': 'holder'},
-      v('h1', {}, 'Kunststukken uit het rijksmuseum'),
       v('div', {'class': 'painting detail'},
         v('a', {'href': '#/', 'class': 'btn'}, 'Return'),
         v('div', {},

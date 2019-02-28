@@ -10,6 +10,9 @@ class DOM {
     }
     const {type, props, children} = node
 
+    if (typeof type === 'string' && !props) {
+      return document.createTextNode(type)
+    }
     if (typeof type === 'function') {
       // component / full template
       const component = new type(props)

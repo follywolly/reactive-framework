@@ -20,7 +20,7 @@ class Slider extends Component {
       this.setState({data: data})
       this.store.setState({paintings: data})
     }
-    
+
     this.store.watch('filtered', (data) => {
       this.setState({data})
     })
@@ -32,6 +32,12 @@ class Slider extends Component {
   build() {
     const v = this.domHandler.virtualize
     const slices = this.helper.chunk(this.state.data, 3)
+    if (this.state.data.length === 0) {
+      return v('div', {'class': 'center-text'},
+        v('p', {}, 'No paintings found with that name or maker'),
+        v('button', {'id': 'slider-button'}, 'Volgende drie...')
+      )
+    }
     return v('div', {'id': 'slider-holder'},
       v('div', {'class': 'paintingsholder', 'id': 'paintingsholder'},
         ...slices.map((slice, i) => {

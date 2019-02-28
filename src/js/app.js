@@ -1,29 +1,19 @@
-'use strict'
+import Component from './templates/component.js'
+import Header from './templates/components/header.js'
+import Footer from './templates/components/footer.js'
 
-// modules
-import Router from './modules/router.js'
+class App extends Component {
+  constructor(props) {
+    super(props)
+  }
+  build() {
+    const v = this.domHandler.virtualize
+    return v('div', {'class': 'app'},
+      v(Header),
+      v('div', {'id': 'router-view'}),
+      v(Footer)
+    )
+  }
+}
 
-import Detail from './templates/pages/detail.js'
-import Overview from './templates/pages/overview.js'
-
-const router = new Router()
-
-router.add(
-  [
-    {
-      href: '/',
-      temp: () => new Overview,
-      callback: () => console.log('callback')
-    },
-    {
-      href: '/paintings/:id',
-      temp: (id) => new Detail({id}),
-      callback: [
-        () => console.log('callback 1'),
-        () => console.log('callback 2')
-      ]
-    }
-  ]
-)
-
-router.navigate()
+export default App

@@ -14,7 +14,6 @@ class Store {
   }
   updateID(){
     this.unId = this.unId + 1
-    console.log(this.unId);
   }
   setState(state) {
     this.state = Object.assign({}, this.state, state)
