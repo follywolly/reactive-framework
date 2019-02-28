@@ -1,10 +1,8 @@
 import Component from '../component.js'
-import Slider from '../../templates/components/slider.js'
 
 class Search extends Component {
   constructor(props) {
     super(props)
-    this.slider = new Slider()
   }
   build() {
     const v = this.domHandler.virtualize
@@ -29,7 +27,7 @@ class Search extends Component {
         painting.title.toLowerCase().indexOf(input.value.toLowerCase()) > -1 ||
         painting.maker.toLowerCase().indexOf(input.value.toLowerCase()) > -1
       )
-      this.slider.setState({data: filtered})
+      this.store.setState({filtered})
     })
   }
 }

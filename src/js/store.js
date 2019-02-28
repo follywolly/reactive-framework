@@ -1,15 +1,11 @@
 'use strict'
 
-const store = {
-  state: {
-    unId: 0
-  },
-  setState(state) {
-    this.state = Object.assign({}, this.state, state)
-  },
-  getState(key) {
-    return this.state[key]
-  }
-}
+import Store from './modules/store.js'
+
+const store = new Store()
+
+store.setState({
+  lang: 'dut'
+})
 
 export default store

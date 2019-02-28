@@ -20,6 +20,10 @@ class Slider extends Component {
       this.setState({data: data})
       this.store.setState({paintings: data})
     }
+    
+    this.store.watch('filtered', (data) => {
+      this.setState({data})
+    })
 
     if (!this.loading) {
       this.slider()

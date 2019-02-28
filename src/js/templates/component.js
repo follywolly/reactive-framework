@@ -9,8 +9,8 @@ class Component {
     this.store = store
     this.props = props
     this.state = {}
-    this.id = this.store.state.unId
-    this.store.setState({unId: this.store.getState('unId') + 1})
+    this.id = this.store.unId
+    this.store.commit('updateID')
     this.loading = false
   }
   setState(state) {
