@@ -209,7 +209,7 @@ class Login extends Component {
     }
     this.store.watch('someproperty', (val) => {
       console.log('someproperty has changed: ', val) // do something upon value change of anything in the store state
-    })
+    }, this.id)
   }
   loader() { // when this.loading is set to true, the loader function will be called instead of the build function upon render
     const v = this.domHandler.virtualize
@@ -251,8 +251,8 @@ On desktop, the landing page shows three paintings at a time horizontally, to re
 - [x] Component based Virtual DOM
 - [x] Make data component-scoped
 - [x] Store watcher
+- [x] Support English & Dutch language
 - [ ] Diffing algorithm to efficiently update the DOM
-- [ ] Support English & Dutch language
 
 ## License
 [MIT](LICENSE) © [Folkert-Jan van der Pol](https://folkertjan.nl/)
