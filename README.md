@@ -13,8 +13,11 @@ Content served on a front page with art objects from the [Rijksmuseum API](https
 4. [API](#4-API)
 5. [Actor Diagram](#5-Actor-Diagram)
 6. [Interaction](#6-Interaction)
-7. [Design decisions](#7-Design-decisions)
-8. [To-do](#8-To-do)
+7. [Code examples](#7-Code-examples)
+  - 7.1 [Router](#7-1-Router)
+  - 7.2 [Components](#7-2-Components)
+8. [Design decisions](#8-Design-decisions)
+9. [To-do](#9-To-do)
 
 [License](#License)
 
@@ -122,7 +125,7 @@ The main interaction flow of the code in this applications is described in the d
 </details>
 
 ## 7. Code examples
-### 7.1 Adding a route to the router
+### 7.1 Router
 ```js
 import Router from 'router.js'
 import Home from 'home.js' // page component
@@ -148,7 +151,7 @@ router.add([
   {/*route*/}
 ])
 ```
-### 7.2 Creating a component
+### 7.2 Components
 #### 7.2.1 Simple component with mounted hook
 ```js
 import Component from 'component.js'
