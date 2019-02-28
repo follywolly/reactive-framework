@@ -40,7 +40,7 @@ class Router {
     if (param !== null && param.indexOf('-') === -1) {
       return this.render.error('401', 'Check if painting ID is valid. All ID\'s consist of letters, numbers and hyphens.')
     }
-    return this.render.template({
+    return this.render.template({ // if route is found, render correct component
       temp: route.temp(param),
       callback: route.callback
     })

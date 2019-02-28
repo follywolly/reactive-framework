@@ -10,15 +10,24 @@ class DetailBody extends Component {
     }
     this.loading = true
   }
-  async mounted() {
-    if (!this.loading) return
-    try {
-      const data = await request(this.state.id, {'insert': `/${this.state.id}`})
-      this.loading = false
-      this.setState({data})
-    } catch (e) {
-      // render error page
+  mounted() {
+    if (this.loading && !this.langChange) {
+      this.getData(true)
     }
+
+    this.store.watch('lang', () => {
+      this.langChange = true
+      this.loading = true
+      this.setState({data: null})
+      this.getData(false)
+    })
+  }
+  async getData(local){
+    const lang = this.store.getState('lang')
+    const data = await request(this.state.id, {'insert': `/${this.state.id}`, lang}, local)
+    this.loading = false
+    this.setState({data})
+    this.langChange = false
   }
   build() {
     const v = this.domHandler.virtualize

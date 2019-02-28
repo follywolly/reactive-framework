@@ -10,7 +10,7 @@ class Overview extends Component {
     const v = this.domHandler.virtualize
     return v('div', {'class': 'holder'},
       v(Search),
-      v('div', {'id': 'test'},
+      v('div', {},
         v(Slider)
       )
     )

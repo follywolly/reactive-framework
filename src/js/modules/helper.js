@@ -1,21 +1,19 @@
 class Helper {
   constructor() {}
   chunk(array, size = 3) {
-
-      var length = array == null ? 0 : array.length;
+      let length = array == null ? 0 : array.length;
       if (!length) {
-        return [];
+        return []
       }
-      var index = 0,
-          resIndex = 0,
+      let index = 0,
           result = []
 
       while (index < length) {
-        let newArr = array.slice(index, index + size)
-        result.push(newArr)
-        index += size
+        let ch = array.slice(index, index + size) // zolang er nog overige items in de array zitten, maak nieuwe chunk zo lang als size. Als er minder items in zitten dan de size grootte wordt de laatste chunk automatisch gevuld met overige items.
+        result.push(ch)
+        index += size // reset index naar het eind van de vorige gemaakte chunk
       }
-      return result;
+      return result
     }
 }
 export default Helper

@@ -12,14 +12,13 @@ class Render {
       temp: new App()
     }
 
-    this.app.el.appendChild(
+    this.app.el.appendChild( // build initial component 'App'
       this.dom.create(
         this.app.temp.preBuild()
       )
     )
 
-    this.container = document.querySelector('#router-view')
-
+    this.container = document.querySelector('#router-view') // init router-view element
   }
   clean() {
     this.container.innerHTML = ''
@@ -34,7 +33,7 @@ class Render {
   }
   async template(config) {
     this.clean()
-    this.container.appendChild(
+    this.container.appendChild( // render templates in router-view element
       this.dom.create(
         config.temp.preBuild()
       )

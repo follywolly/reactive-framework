@@ -265,6 +265,29 @@ button:hover, .btn:hover {
 #slider-button {
   display: none;
 }
+.hide {
+  border: 0;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip; rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+#lang-switcher {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+#search-input {
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+  border: 0;
+  border-bottom: 1px solid grey;
+}
 
 @media screen and (min-width: 60rem) {
   #app {

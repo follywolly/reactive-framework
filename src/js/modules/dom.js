@@ -2,7 +2,7 @@ class DOM {
   constructor() {
   }
   virtualize(type, props, ...children) {
-    return {type, props, children}
+    return {type, props, children} // make js object tree from function calls from components build() functions
   }
   create(node) {
     if (typeof node === 'string') {
@@ -10,24 +10,21 @@ class DOM {
     }
     const {type, props, children} = node
 
-    if (typeof type === 'string' && !props) {
+    if (typeof type === 'string' && !props) { // if only text is entered in the virtualize function, render text
       return document.createTextNode(type)
     }
-    if (typeof type === 'function') {
-      // component / full template
+    if (typeof type === 'function') { // component / full template
       const component = new type(props)
-      const pre = component.preBuild()
-      pre.props['data-id'] = component.id
-      const el = this.create(pre)
-      setTimeout(() => component.mounted(), 0)
+      const el = this.create(component.preBuild())
+      setTimeout(() => component.mounted(), 0) // fire cb after everything has rendered
       return el
     }
     const el = document.createElement(type)
     this.setProps(el, props)
 
     children
-      .map(child => this.create(child))
-      .forEach(el.appendChild.bind(el))
+      .map(child => this.create(child)) // recursively make all the children
+      .forEach(el.appendChild.bind(el)) // bind is necessary since it renders on itself
     return el
   }
   setProps(node, props) {
@@ -38,10 +35,17 @@ class DOM {
       setProp(node, key, value)
     }
   }
-  update(node) {
-    const parent = document.querySelector(`[data-id="${node.props['data-id']}"]`).parentNode
+  update(comp) {
+    const node = comp.preBuild()
+    const el = document.querySelector(`[data-id="${node.props['data-id']}"]`)
+
+    if (!el) return console.error('Element you are trying to update doesn\'t exist')
+
+    const parent = el.parentNode
     parent.innerHTML = ''
     parent.appendChild(this.create(node))
+
+    setTimeout(() => comp.mounted(), 0)
   }
 }
 

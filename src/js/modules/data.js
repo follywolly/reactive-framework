@@ -1,12 +1,12 @@
 'use strict'
 
 const settings = '?key=3jvQxuIu&format=json'
-const endpoint = 'https://www.rijksmuseum.nl/api/nl/collection'
+const endpoint = 'https://www.rijksmuseum.nl/api/'
 
 const url = (params = {}) => {
   params.insert = params.insert || ''
   params.adjacent = params.adjacent || ''
-  return endpoint + params.insert + settings + params.adjacent
+  return `${endpoint}${params.lang}/collection${params.insert}${settings}${params.adjacent}`
 }
 const detailTemp = painting => {
   return {
@@ -38,9 +38,9 @@ const format = data => {
   // all paintings
   return data.artObjects.map(painting => overviewTemp(painting))
 }
-const request = (name, urlConfig) => {
+const request = (name, urlConfig, getFromLocal = true) => {
   const reqUrl = url(urlConfig)
-  if (sessionStorage.getItem(name)) {
+  if (sessionStorage.getItem(name) && getFromLocal) { // if data is in the sessionStorage and it is desired from there, send localdata instead of api response
     return new Promise(resolve => resolve(JSON.parse(sessionStorage.getItem(name))))
   }
   return new Promise((resolve, reject) => {

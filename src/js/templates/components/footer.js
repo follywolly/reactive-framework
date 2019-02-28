@@ -1,8 +1,8 @@
 import Component from '../component.js'
 
 class Footer extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
   }
   build() {
     const v = this.domHandler.virtualize

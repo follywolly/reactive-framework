@@ -9,25 +9,37 @@ class Slider extends Component {
     }
     this.loading = true
   }
-  async mounted() {
+  mounted() {
     if (this.state.data.length > 0) {
       this.loading = false
     }
 
-    if (this.loading) {
-      const data = await request('Overview', {'adjacent': '&ps=100'})
-      this.loading = false
-      this.setState({data: data})
-      this.store.setState({paintings: data})
+    if (this.loading && !this.langChange) {
+      this.getData(true)
     }
-
+    
     this.store.watch('filtered', (data) => {
       this.setState({data})
-    })
+    }, this.id)
+
+    this.store.watch('lang', () => {
+      this.langChange = true
+      this.loading = true
+      this.setState({data: []})
+      this.getData(false)
+    }, this.id)
 
     if (!this.loading) {
       this.slider()
     }
+  }
+  async getData(local) {
+    const language = this.store.getState('lang')
+    const data = await request('Overview', {'adjacent': '&ps=100', 'lang': language}, local)
+    this.store.setState({paintings: data})
+    this.loading = false
+    this.store.commit('filter')
+    this.langChange = false
   }
   build() {
     const v = this.domHandler.virtualize
@@ -35,7 +47,7 @@ class Slider extends Component {
     if (this.state.data.length === 0) {
       return v('div', {'class': 'center-text'},
         v('p', {}, 'No paintings found with that name or maker'),
-        v('button', {'id': 'slider-button'}, 'Volgende drie...')
+        v('button', {'id': 'slider-button'}, 'Next three...')
       )
     }
     return v('div', {'id': 'slider-holder'},
@@ -58,7 +70,7 @@ class Slider extends Component {
           )
         })
       ),
-      v('button', {'id': 'slider-button'}, 'Volgende drie...')
+      v('button', {'id': 'slider-button'}, 'Next three...')
     )
   }
   loader() {
