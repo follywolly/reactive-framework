@@ -1,7 +1,7 @@
 # ARTGALLERY EXPERIENCE
 
 ## Summary
-A single page web application made from scratch (currently without any libraries). Language of the product is currently in Dutch, adding support for English soon.
+A single page web application made from scratch (currently without any libraries). You can view artobject descriptions in both Dutch and English.
 Content served on a front page with art objects from the [Rijksmuseum API](https://www.rijksmuseum.nl/nl/api).
 
 ![Prototype screenshot](docs/screenshot_1.png)
@@ -19,6 +19,7 @@ Content served on a front page with art objects from the [Rijksmuseum API](https
 8. [Design decisions](#8-Design-decisions)
 9. [To-do](#9-To-do)
 
+[Sources](#sources)     
 [License](#License)
 
 ## 1. Live demo
@@ -233,9 +234,7 @@ class Login extends Component {
 ```
 
 ## 7. Design decisions
-Currently the design is very minimalistic, to really let the images of the art objects speak for itself.
-On desktop, the landing page shows three paintings at a time horizontally, to represent the feeling of an art gallery. When switching to the next three paintings a slide animation occurs, giving the feeling of moving to a next room. This was done to really represent the feeling of an art gallery, as the main focus of this product is showing off the art objects from the Rijksmuseum's current collection.
-
+Users can browse artobjects from the Rijksmuseum by switching between three artobjects at a time (on desktop). This is supposed to give people the feeling of being in a room within the Rijksmuseum, seeing only a few artobjects on a wall. Users can search artobjects or makers,
 ## 8. To-do
 - [x] Make connection with the API
 - [x] Render landing page with all art objects
@@ -253,6 +252,14 @@ On desktop, the landing page shows three paintings at a time horizontally, to re
 - [x] Store watcher
 - [x] Support English & Dutch language
 - [ ] Diffing algorithm to efficiently update the DOM
+
+
+## Sources used
+- [How to write your own virtual dom](https://medium.com/@deathmood/how-to-write-your-own-virtual-dom-ee74acc13060) by deathmood - The base and most inspiration for DOM and Render class came from here
+- [Hashchange events in javascript](https://developer.mozilla.org/en-US/docs/Web/Events/hashchange) by MDN
+- [Classes in javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class) by MDN
+- [Object.protorype.watch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/watch) by MDN - inspiration for store watcher function started here
+- [Rijksmuseum API](https://www.rijksmuseum.nl/nl/api)
 
 ## License
 [MIT](LICENSE) © [Folkert-Jan van der Pol](https://folkertjan.nl/)
