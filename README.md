@@ -205,7 +205,11 @@ class Login extends Component {
       const data = await fetch('someurl') // let's say this returns 'Hello World' after a few seconds
       this.loading = false // comes before setState since setState will trigger re-render
       this.setState({data}) // you can update state (component rerenders upon state change)
+      this.store.setState({data}) // you can update the general state via the store
     }
+    this.store.watch('someproperty', (val) => {
+      console.log('someproperty has changed: ', val) // do something upon value change of anything in the store state
+    })
   }
   loader() { // when this.loading is set to true, the loader function will be called instead of the build function upon render
     const v = this.domHandler.virtualize
@@ -246,6 +250,7 @@ On desktop, the landing page shows three paintings at a time horizontally, to re
 - [x] Virtual DOM
 - [x] Component based Virtual DOM
 - [x] Make data component-scoped
+- [x] Store watcher
 - [ ] Diffing algorithm to efficiently update the DOM
 - [ ] Support English & Dutch language
 
