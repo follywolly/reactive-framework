@@ -97,7 +97,9 @@ class Slider extends Component {
     )
   }
   slider() {
-    document.querySelector('#slider-button').addEventListener('click', () => {
+    const el = document.querySelector('#slider-button')
+    if (!el) return
+    el.addEventListener('click', () => {
       const all = document.querySelectorAll('.painting-group')
       const selected = document.querySelector('.painting-group.active')
       const elReset = e => {

@@ -36,7 +36,6 @@ class DetailBody extends Component {
   build() {
     const v = this.domHandler.virtualize
     const painting = this.state.data
-    console.log(painting);
 
     return v('div', {'class': 'painting-body'},
       v('figure', {},
