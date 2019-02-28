@@ -17,7 +17,7 @@ class Slider extends Component {
     if (this.loading && !this.langChange) {
       this.getData(true)
     }
-    
+
     this.store.watch('filtered', (data) => {
       this.setState({data})
     }, this.id)
@@ -35,11 +35,16 @@ class Slider extends Component {
   }
   async getData(local) {
     const language = this.store.getState('lang')
-    const data = await request('Overview', {'adjacent': '&ps=100', 'lang': language}, local)
-    this.store.setState({paintings: data})
-    this.loading = false
-    this.store.commit('filter')
-    this.langChange = false
+    try {
+      const data = await request('Overview', {'adjacent': '&ps=100', 'lang': language}, local)
+      this.store.setState({paintings: data})
+      this.loading = false
+      this.store.commit('filter')
+      this.langChange = false
+    } catch (e) {
+      console.error(e)
+    }
+
   }
   build() {
     const v = this.domHandler.virtualize

@@ -24,14 +24,19 @@ class DetailBody extends Component {
   }
   async getData(local){
     const lang = this.store.getState('lang')
-    const data = await request(this.state.id, {'insert': `/${this.state.id}`, lang}, local)
-    this.loading = false
-    this.setState({data})
-    this.langChange = false
+    try {
+      const data = await request(this.state.id, {'insert': `/${this.state.id}`, lang}, local)
+      this.loading = false
+      this.setState({data})
+      this.langChange = false
+    } catch (e) {
+      console.error(e)
+    }
   }
   build() {
     const v = this.domHandler.virtualize
     const painting = this.state.data
+    console.log(painting);
 
     return v('div', {'class': 'painting-body'},
       v('figure', {},

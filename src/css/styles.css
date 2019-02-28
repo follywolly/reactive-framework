@@ -20,7 +20,7 @@ main {
 h1 {
   text-align: center;
   margin-bottom: 6rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   white-space: normal;
 }
 p {
@@ -289,8 +289,8 @@ button:hover, .btn:hover {
   right: 2rem;
 }
 #search-input {
-  padding: 1rem 2rem;
-  font-size: 3rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
   font-weight: bold;
   border: 0;
   border-bottom: 1px solid grey;
@@ -300,10 +300,20 @@ button:hover, .btn:hover {
 }
 #search-input:focus {
   outline: none!important;
-  box-shadow: 0px 20px 40px -20px rgba(0,0,0,.15);
+  box-shadow: 0px 10px 20px -10px rgba(0,0,0,.15);
   transform: translateY(-0.5rem);
 }
 @media screen and (min-width: 60rem) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  #search-input {
+    font-size: 3rem;
+    padding: 1rem 2rem;
+  }
+  #search-input:hover {
+    box-shadow: 0px 20px 40px -20px rgba(0,0,0,.15);
+  }
   #app {
     min-height: 25rem;
   }

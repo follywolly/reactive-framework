@@ -8,6 +8,12 @@ const url = (params = {}) => {
   params.adjacent = params.adjacent || ''
   return `${endpoint}${params.lang}/collection${params.insert}${settings}${params.adjacent}`
 }
+const cleanObj = obj => {
+  for (const [key, val] of Object.entries(obj)) {
+    obj[key] = !val ? '' : val
+  }
+  return obj
+}
 const detailTemp = painting => {
   return {
     number: painting.objectNumber,
@@ -33,10 +39,10 @@ const format = data => {
   if (data.artObject) {
     // single painting
     const painting = data.artObject
-    return detailTemp(painting)
+    return cleanObj(detailTemp(painting))
   }
   // all paintings
-  return data.artObjects.map(painting => overviewTemp(painting))
+  return data.artObjects.map(painting => cleanObj(overviewTemp(painting)))
 }
 const request = (name, urlConfig, getFromLocal = true) => {
   const reqUrl = url(urlConfig)
