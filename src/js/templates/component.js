@@ -9,12 +9,15 @@ class Component {
     this.store = store
     this.props = props
     this.state = {}
-    this.id = 0
+    this.id = this.store.state.unId
+    this.store.setState({unId: this.store.getState('unId') + 1})
     this.loading = false
   }
   setState(state) {
     this.state = Object.assign({}, this.state, state)
-    this.domHandler.update(this.build())
+    const pre = this.build()
+    pre.props['data-id'] = this.id
+    this.domHandler.update(pre)
     setTimeout(() => this.mounted(), 0)
   }
   preBuild() {
@@ -25,7 +28,7 @@ class Component {
   }
   loader() {
     const v = this.domHandler.virtualize
-    return v('div', {'class': 'holder loading', 'data-id': this.id},
+    return v('div', {'class': 'holder loading'},
       v('p', {}, 'Loading...')
     )
   }

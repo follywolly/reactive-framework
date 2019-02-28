@@ -1,5 +1,9 @@
+'use strict'
+
 const store = {
-  state: {},
+  state: {
+    unId: 0
+  },
   setState(state) {
     this.state = Object.assign({}, this.state, state)
   },

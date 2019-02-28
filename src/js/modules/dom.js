@@ -13,7 +13,9 @@ class DOM {
     if (typeof type === 'function') {
       // component / full template
       const component = new type(props)
-      const el = this.create(component.preBuild())
+      const pre = component.preBuild()
+      pre.props['data-id'] = component.id
+      const el = this.create(pre)
       setTimeout(() => component.mounted(), 0)
       return el
     }
@@ -33,10 +35,10 @@ class DOM {
       setProp(node, key, value)
     }
   }
-  update(vNode) {
-    const parent = document.querySelector(`[data-id="${vNode.props['data-id']}"]`).parentNode
+  update(node) {
+    const parent = document.querySelector(`[data-id="${node.props['data-id']}"]`).parentNode
     parent.innerHTML = ''
-    parent.appendChild(this.create(vNode))
+    parent.appendChild(this.create(node))
   }
 }
 

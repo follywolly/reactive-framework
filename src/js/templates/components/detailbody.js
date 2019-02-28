@@ -12,15 +12,19 @@ class DetailBody extends Component {
   }
   async mounted() {
     if (!this.loading) return
-    const data = await request(this.state.id, {'insert': `/${this.state.id}`})
-    this.loading = false
-    this.setState({data})
+    try {
+      const data = await request(this.state.id, {'insert': `/${this.state.id}`})
+      this.loading = false
+      this.setState({data})
+    } catch (e) {
+      // render error page
+    }
   }
   build() {
     const v = this.domHandler.virtualize
     const painting = this.state.data
 
-    return v('div', {'class': 'painting-body', 'data-id': this.id},
+    return v('div', {'class': 'painting-body'},
       v('figure', {},
         v('img', {'src': painting.src, 'alt': `${painting.longTitle} - Rijksmuseum Collection`}),
         v('figcaption', {}, `${painting.longTitle} - Rijksmuseum Collection`)

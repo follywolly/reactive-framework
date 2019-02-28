@@ -7,7 +7,6 @@ class Slider extends Component {
     this.state = {
       data: []
     }
-    this.id = 1
     this.loading = true
   }
   async mounted() {
@@ -29,7 +28,7 @@ class Slider extends Component {
   build() {
     const v = this.domHandler.virtualize
     const slices = this.helper.chunk(this.state.data, 3)
-    return v('div', {'id': 'slider-holder', 'data-id': this.id},
+    return v('div', {'id': 'slider-holder'},
       v('div', {'class': 'paintingsholder', 'id': 'paintingsholder'},
         ...slices.map((slice, i) => {
           return v('div', {'class': i == 0 ? 'painting-group active' : 'painting-group'},
@@ -54,7 +53,7 @@ class Slider extends Component {
   }
   loader() {
     const v = this.domHandler.virtualize
-    return v('div', {'id': 'slider-holder', 'data-id': this.id},
+    return v('div', {'id': 'slider-holder'},
       v('div', {'class': 'paintingsholder', 'id': 'paintingsholder'},
         v('div', {'class': 'painting-group active'},
           v('div', {'class': 'painting loader'},

@@ -1,3 +1,4 @@
+'use strict'
 
 const settings = '?key=3jvQxuIu&format=json'
 const endpoint = 'https://www.rijksmuseum.nl/api/nl/collection'
