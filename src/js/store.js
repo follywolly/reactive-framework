@@ -13,7 +13,6 @@ store.setState({
 store.filter = () => {
   const paintings = store.state.paintings
   const query = store.state.query
-  console.log('filter fired', paintings, query);
   if (!paintings) return
   if (!query) return store.setState({filtered: paintings})
   const filtered = paintings.filter(painting =>

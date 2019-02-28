@@ -39,7 +39,7 @@ class DOM {
     const node = comp.preBuild()
     const el = document.querySelector(`[data-id="${node.props['data-id']}"]`)
 
-    if (!el) return console.error('Element you are trying to update doesn\'t exist')
+    if (!el) return console.error('Element you\'re trying to update doesn\'t exist')
 
     const parent = el.parentNode
     parent.innerHTML = ''
