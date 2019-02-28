@@ -19,7 +19,7 @@ Content served on a front page with art objects from the [Rijksmuseum API](https
 8. [Design decisions](#8-Design-decisions)
 9. [To-do](#9-To-do)
 
-[Sources](#sources)     
+[Sources](#Sources-used)     
 [License](#License)
 
 ## 1. Live demo
