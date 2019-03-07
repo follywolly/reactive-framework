@@ -233,9 +233,11 @@ class Login extends Component {
 }
 ```
 
-## 7. Design decisions
-Users can browse artobjects from the Rijksmuseum by switching between three artobjects at a time (on desktop). This is supposed to give people the feeling of being in a room within the Rijksmuseum, seeing only a few artobjects on a wall. Users can search artobjects or makers,
-## 8. To-do
+## 8. Design decisions
+Users can browse artobjects from the Rijksmuseum by switching between three artobjects at a time (on desktop). This is supposed to give people the feeling of being in a room within the Rijksmuseum, seeing only a few artobjects on a wall. Users can search artobjects or makers, returning corresponding art objects.
+Clicking on an art object opens up a detailpage about the art object showing further details.
+
+## 9. To-do
 - [x] Make connection with the API
 - [x] Render landing page with all art objects
 - [x] Render detail pages
