@@ -23,7 +23,7 @@ Content served on a front page with art objects from the [Rijksmuseum API](https
 [License](#License)
 
 ## 1. Live demo
-Check the live site [here](https://follywolly.github.io/web-app-from-scratch-18-19/src).
+Check the live site [here](https://follywolly.github.io/web-app-from-scratch-18-19/src/#/).
 
 ## 2. Install
 This project currently doesn't have any dependencies, so you can just fork it and clone it to your device.
